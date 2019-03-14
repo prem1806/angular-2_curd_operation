@@ -1,0 +1,83 @@
+<div class="container">
+	<h2>User data</h2>
+	<form #userForm="ngForm" (ngSubmit)="onSubmit(userForm.value)" novalidate>
+		<div class="form-group">
+			<label>Name</label>
+			<input type="text" #nameRef="ngModel" minlength="4" maxlength="10" required class="form-control" name="name" ngModel>
+			<!-- <div [hidden]="nameRef.valid || nameRef.pristine" class="alert alert-danger">
+				please enter name
+			</div> -->
+			<div *ngIf="nameRef.errors && (nameRef.dirty || nameRef.touched)" class="alert alert-danger">
+				<div [hidden]="!nameRef.errors.required">
+					please enter name
+				</div>
+				<div [hidden]="!nameRef.errors.minlength">
+					please enter min 4 letters
+				</div>
+				<div [hidden]="!nameRef.errors.maxlength">
+					please enter min 4 letters
+				</div>
+			</div>
+		</div>
+		<div class="form-group">
+			<label>Email</label>
+			<input type="email" #refEmail="ngModel" required pattern="[a-zA-Z0-9.-_]{1,}@[a-zA-Z.-]{2,}[.]{1}[a-zA-Z]{2,}" class="form-control"  name="emial" ngModel>
+
+			<div *ngIf="refEmail.errors && (refEmail.dirty || refEmail.touched)" class="alert alert-danger">
+				<div [hidden]="!refEmail.errors.required">
+					please enter email
+				</div>
+				<div [hidden]="!refEmail.errors.pattern">
+					please enter correct email
+				</div>
+			</div>
+
+		</div>
+		<div class="form-group">
+			<label>Mobile number</label>
+			<input type="text" #refMob="ngModel" required  pattern="^[1-9][0-9]{9}$" class="form-control" name="code" ngModel>
+			<div *ngIf="refMob.errors && (refMob.dirty || refMob.touched)" class="alert alert-danger">
+				<div [hidden]="!refMob.errors.required">
+					please enter number
+				</div>
+				<div [hidden]="!refMob.errors.pattern">
+					please enter Ten digit number
+				</div>
+			</div>
+		</div>
+		<div class="form-group">
+			<label>Gender</label><br>
+			<div class="form-control">
+				<label class="radio-inline"><input type="radio" value="male" required  #refgender="ngModel" name="optradio" ngModel>Male</label>
+				<label class="radio-inline"><input type="radio" value="female" required #refgender="ngModel" name="optradio" ngModel>Female</label>				
+			</div>
+			<div *ngIf="refgender.errors && (refgender.dirty || refgender.touched)" class="alert alert-danger">
+				<div [hidden]="!refgender.errors.required">
+					please select the gender
+				</div>
+			</div>
+		</div>
+		<div class="form-group">
+			<label>Street</label>
+			<input type="text" class="form-control" name="street" ngModel>
+		</div>
+		<div class="form-group">
+			<label>City</label>
+			<input type="text" class="form-control" name="City" ngModel>
+		</div>
+		<!-- <div class="form-group">
+			<label>Postal code</label>
+			<input type="text" #refpin="ngModel" required  pattern="^[1-9][0-9]{4}$" class="form-control" name="code" ngModel>
+			<div *ngIf="refpin.errors && (refpin.dirty || refpin.touched)" class="alert alert-danger">
+				<div [hidden]="!refpin.errors.required">
+					please enter number
+				</div>
+				<div [hidden]="!refpin.errors.pattern">
+					please enter five digit number
+				</div>
+			</div>
+		</div> -->
+		<button [disabled]="!userForm.form.valid" type="submit" class="btn btn-primary">submit</button>
+		
+	</form>
+</div>
